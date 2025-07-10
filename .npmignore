@@ -1,0 +1,19 @@
+# Ignore dev folders
+node_modules/
+dist/
+build/
+storybook-static/
+coverage/
+.vscode/
+*.log
+
+# Ignore config files
+tsconfig.json
+tailwind.config.js
+postcss.config.js
+webpack.config.js
+.eslintrc*
+.prettier*
+
+# Ignore source files if you're publishing built output
+src/
