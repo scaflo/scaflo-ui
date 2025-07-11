@@ -1,6 +1,7 @@
 // import React from "react";
 // import { Loader2 } from "lucide-react";
 
+import { Loader2 } from "lucide-react";
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: "sm" | "md" | "lg";
   loading?: boolean;
@@ -8,7 +9,6 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   rightIcon?: React.ReactNode;
 }
 
-import { Loader2 } from "lucide-react";
 // const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 //   (
 //     {
@@ -67,37 +67,98 @@ import { Loader2 } from "lucide-react";
 
 // export default Button;
 
+// import React from "react";
+
+// const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+//   (props, ref) => {
+//     const baseClasses =
+//       "inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded";
+
+//     const sizeClasses = {
+//       sm: "px-3 py-1.5 text-sm",
+//       md: "px-4 py-2 text-sm",
+//       lg: "px-6 py-3 text-base",
+//     };
+//     return (
+//       <button
+//         ref={ref}
+//         className={`${baseClasses} ${sizeClasses.md}`}
+//         {...props}
+//       >
+//         {props.loading ? (
+//           <Loader2 className="w-4 h-4 animate-spin" />
+//         ) : (
+//           props.leftIcon && <span className="w-4 h-4">{props.leftIcon}</span>
+//         )}
+//         {!props.loading && props.children}
+//         {!props.loading && props.rightIcon && (
+//           <span className="w-4 h-4">{props.rightIcon}</span>
+//         )}
+//       </button>
+//     );
+//   },
+// );
+
+// export default Button;
+
+
+
 import React from "react";
+import { cn } from "../../lib/utils.js";
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, ref) => {
 
-    const baseClasses =
-      "inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded";
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "default" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg";
+  fullWidth?: boolean;
+  as?: React.ElementType;
+}
 
-    const sizeClasses = {
-      sm: "px-3 py-1.5 text-sm",
-      md: "px-4 py-2 text-sm",
-      lg: "px-6 py-3 text-base",
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      variant = "default",
+      size = "md",
+      fullWidth = false,
+      as: Component = "button",
+      disabled,
+      ...props
+    },
+    ref
+  ) => {
+    const baseStyles =
+      "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+
+    const variants = {
+      default:
+        "bg-gray-900 text-white hover:bg-gray-800 focus-visible:ring-gray-900",
+      outline:
+        "border border-gray-300 bg-transparent hover:bg-gray-50 focus-visible:ring-gray-900",
+      ghost: "hover:bg-gray-100 focus-visible:ring-gray-900",
     };
+
+    const sizes = {
+      sm: "h-8 px-3 text-sm",
+      md: "h-10 px-4",
+      lg: "h-12 px-6 text-lg",
+    };
+
     return (
-      <button
+      <Component
         ref={ref}
-        className={`${baseClasses} ${sizeClasses.md}`}
+        className={cn(
+          baseStyles,
+          variants[variant],
+          sizes[size],
+          fullWidth && "w-full",
+          className
+        )}
+        disabled={disabled}
         {...props}
-      >
-        {props.loading ? (
-          <Loader2 className="w-4 h-4 animate-spin" />
-        ) : (
-          props.leftIcon && <span className="w-4 h-4">{props.leftIcon}</span>
-        )}
-        {!props.loading &&props.children}
-        {!props.loading && props.rightIcon && (
-          <span className="w-4 h-4">{props.rightIcon}</span>
-        )}
-      </button>
+      />
     );
   }
 );
 
-export default Button;
+Button.displayName = "Button";

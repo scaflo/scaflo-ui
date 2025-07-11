@@ -8,11 +8,7 @@ export default defineConfig({
   splitting: true, // no code‑splitting for libs
   sourcemap: true,
   clean: true,
-  // treeshake: true,
-  external: [
-    "react",
-    "react-dom",
-    // any peerDeps here
-  ],
+  treeshake: true,
+  external: ["react", "react-dom"],
   bundle: true,
 });
