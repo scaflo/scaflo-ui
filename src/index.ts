@@ -1,8 +1,11 @@
 import "./index.css";
 
-import {Button} from "./components/Button/Button.js";
+import { Button } from "./components/Button/Button.js";
 
-import {Avatar} from "./components/Avatar/Avatar.js";
+import { Avatar } from "./components/Avatar/Avatar.js";
+import {
+  AvatarGroup,
+} from "./components/AvatarGroup/AvatarGroup.js";
 
 import {
   Modal,
@@ -10,7 +13,7 @@ import {
   ModalBody,
   ModalFooter,
   ModalVariant,
-  useModalContext
+  useModalContext,
 } from "./components/Modal/Modal.js";
 
 export {
@@ -21,5 +24,6 @@ export {
   ModalFooter,
   ModalVariant,
   useModalContext,
+  AvatarGroup,
   Avatar,
 };
