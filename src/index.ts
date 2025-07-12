@@ -2,6 +2,8 @@ import "./index.css";
 
 import {Button} from "./components/Button/Button.js";
 
+import {Avatar} from "./components/Avatar/Avatar.js";
+
 import {
   Modal,
   ModalHeader,
@@ -19,4 +21,5 @@ export {
   ModalFooter,
   ModalVariant,
   useModalContext,
+  Avatar,
 };

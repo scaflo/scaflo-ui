@@ -19,7 +19,7 @@ const ModalContext = createContext<{ onClose: () => void } | null>(null);
 const useModalContext = () => {
   const ctx = useContext(ModalContext);
   if (!ctx)
-    throw new Error("Modal subcomponents must be used inside <Modal />");
+    throw new Error("Modal sub-components must be used inside <Modal />");
   return ctx;
 };
 
@@ -38,7 +38,7 @@ const Modal: React.FC<Modal> = ({
   children,
   size = "md",
   hideCloseButton = false,
-  variant = "top",
+  variant = "fade",
 }) => {
   // const contentRef = useClickOutside<HTMLDivElement>(onClose);
   const contentRef = useClickOutside<HTMLDivElement>({
