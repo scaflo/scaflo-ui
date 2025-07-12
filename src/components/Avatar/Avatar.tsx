@@ -54,7 +54,7 @@ const Avatar = ({
     <div
       className={cn(
         AvatarSize[size],
-        "rounded-full overflow-hidden group flex items-center justify-center relative m-1",
+        "rounded-full overflow-hidden group flex items-center justify-center relative",
         className
       )}
       onClick={onClick}
@@ -71,7 +71,7 @@ const Avatar = ({
       }
     >
       <div
-        className={`w-full h-full rounded-full absolute z-10 top-0 left-0 bg-black/0 transition-colors ${
+        className={`w-full h-full rounded-full absolute z-10 top-0 overflow-hidden left-0 bg-black/0 transition-colors ${
           onClick ? "cursor-pointer group-hover:bg-black/20" : ""
         }`}
       ></div>
@@ -80,7 +80,7 @@ const Avatar = ({
         <img
           src={imgSrc}
           alt={alt || fallback || "Avatar"}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover transition-all duration-75 group-hover:scale-[1.03]"
           onError={handleImageError}
         />
       ) : (
