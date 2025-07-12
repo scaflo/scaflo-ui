@@ -8,6 +8,14 @@ import {
 } from "./components/AvatarGroup/AvatarGroup.js";
 
 import {
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionContent,
+  useAccordionContext
+} from "./components/Accordion/Accordion.js";
+
+import {
   Modal,
   ModalHeader,
   ModalBody,
@@ -26,4 +34,9 @@ export {
   useModalContext,
   AvatarGroup,
   Avatar,
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionContent,
+  useAccordionContext,
 };
