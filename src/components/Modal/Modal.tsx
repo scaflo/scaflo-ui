@@ -1,246 +1,151 @@
-// "use client";
-
-// import React, { createContext, useContext, useEffect, useRef } from "react";
-// import { X, AlertCircle, CheckCircle, Info, AlertTriangle } from "lucide-react";
-
-// interface ModalContextType {
-//   isOpen: boolean;
-//   onClose: () => void;
-// }
-
-// const ModalContext = createContext<ModalContextType | null>(null);
-
-// const useModal = () => {
-//   const context = useContext(ModalContext);
-//   if (!context) {
-//     throw new Error("Modal components must be used within Modal");
-//   }
-//   return context;
-// };
-
-// interface ModalProps {
-//   isOpen: boolean;
-//   onClose: () => void;
-//   children: React.ReactNode;
-// }
-
-// const Modal = ({ isOpen, onClose, children }: ModalProps) => {
-//   const modalRef = useRef<HTMLDivElement>(null);
-
-//   useEffect(() => {
-//     const handleEscape = (e: KeyboardEvent) => {
-//       if (e.key === "Escape") onClose();
-//     };
-
-//     if (isOpen) {
-//       document.addEventListener("keydown", handleEscape);
-//       document.body.style.overflow = "hidden";
-//     }
-
-//     return () => {
-//       document.removeEventListener("keydown", handleEscape);
-//       document.body.style.overflow = "unset";
-//     };
-//   }, [isOpen, onClose]);
-
-//   if (!isOpen) return null;
-
-//   return (
-//     <ModalContext.Provider value={{ isOpen, onClose }}>
-//       <div
-//         className="fixed inset-0 z-50 flex items-center justify-center"
-//         onClick={onClose}
-//       >
-//         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
-//         <div
-//           ref={modalRef}
-//           className="relative z-10 max-h-[90vh] max-w-[90vw] overflow-auto animate-in fade-in-0 zoom-in-95 duration-200"
-//           onClick={(e) => e.stopPropagation()}
-//         >
-//           {children}
-//         </div>
-//       </div>
-//     </ModalContext.Provider>
-//   );
-// };
-
-// const ModalContent = React.forwardRef<
-//   HTMLDivElement,
-//   React.HTMLAttributes<HTMLDivElement>
-// >(({ className = "", children, ...props }, ref) => (
-//   <div
-//     ref={ref}
-//     className={`bg-white rounded-lg shadow-xl border ${className}`}
-//     {...props}
-//   >
-//     {children}
-//   </div>
-// ));
-// ModalContent.displayName = "ModalContent";
-
-// const ModalHeader = React.forwardRef<
-//   HTMLDivElement,
-//   React.HTMLAttributes<HTMLDivElement> & {
-//     icon?: "info" | "success" | "warning" | "error";
-//   }
-// >(({ className = "", children, icon, ...props }, ref) => {
-//   const iconMap = {
-//     info: <Info className="w-5 h-5 text-blue-500" />,
-//     success: <CheckCircle className="w-5 h-5 text-green-500" />,
-//     warning: <AlertTriangle className="w-5 h-5 text-yellow-500" />,
-//     error: <AlertCircle className="w-5 h-5 text-red-500" />,
-//   };
-
-//   return (
-//     <div
-//       ref={ref}
-//       className={`px-6 py-4 border-b flex items-center gap-3 ${className}`}
-//       {...props}
-//     >
-//       {icon && iconMap[icon]}
-//       <div className="flex-1">{children}</div>
-//     </div>
-//   );
-// });
-// ModalHeader.displayName = "ModalHeader";
-
-// const ModalBody = React.forwardRef<
-//   HTMLDivElement,
-//   React.HTMLAttributes<HTMLDivElement>
-// >(({ className = "", children, ...props }, ref) => (
-//   <div ref={ref} className={`px-6 py-4 ${className}`} {...props}>
-//     {children}
-//   </div>
-// ));
-// ModalBody.displayName = "ModalBody";
-
-// const ModalFooter = React.forwardRef<
-//   HTMLDivElement,
-//   React.HTMLAttributes<HTMLDivElement>
-// >(({ className = "", children, ...props }, ref) => (
-//   <div
-//     ref={ref}
-//     className={`px-6 py-4 border-t flex justify-end gap-3 ${className}`}
-//     {...props}
-//   >
-//     {children}
-//   </div>
-// ));
-// ModalFooter.displayName = "ModalFooter";
-
-// const ModalClose = React.forwardRef<
-//   HTMLButtonElement,
-//   React.ButtonHTMLAttributes<HTMLButtonElement>
-// >(({ className = "", children, onClick, ...props }, ref) => {
-//   const { onClose } = useModal();
-
-//   return (
-//     <button
-//       ref={ref}
-//       className={`absolute top-4 right-4 p-1 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors ${className}`}
-//       onClick={(e) => {
-//         onClick?.(e);
-//         onClose();
-//       }}
-//       {...props}
-//     >
-//       {children || <X className="w-4 h-4" />}
-//     </button>
-//   );
-// });
-// ModalClose.displayName = "ModalClose";
-
-// export { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalClose };
-
-
-
 "use client";
 
-import type React from "react";
-import { useEffect } from "react";
-import { useKeyboard } from "../../hooks/use-keyboard.js";
-import { cn, createPortal } from "../../lib/utils.js";
+import { createContext, ReactNode, useContext, useEffect } from "react";
+import { useClickOutside } from "../../hooks/use-click-outside.js";
+import { createPortal } from "react-dom";
+import { cn } from "../../lib/utils.js";
+import { SizeVariables } from "../../variables/variables.js";
+import { Button } from "../Button/Button.js";
+import { X } from "lucide-react";
+import {
+  backdropVariants,
+  ModalVariant,
+  modalVariants,
+} from "../../variables/modal.variants.js";
 
-interface ModalProps {
+import { motion } from "framer-motion";
+
+const ModalContext = createContext<{ onClose: () => void } | null>(null);
+const useModalContext = () => {
+  const ctx = useContext(ModalContext);
+  if (!ctx)
+    throw new Error("Modal sub-components must be used inside <Modal />");
+  return ctx;
+};
+
+interface Modal {
   isOpen: boolean;
   onClose: () => void;
-  children: React.ReactNode;
-  className?: string;
+  children: ReactNode;
+  size: keyof typeof SizeVariables;
+  hideCloseButton?: boolean;
+  variant?: ModalVariant;
 }
 
-export function Modal({ isOpen, onClose, children, className }: ModalProps) {
-  useKeyboard("Escape", onClose, isOpen);
+const Modal: React.FC<Modal> = ({
+  isOpen,
+  onClose,
+  children,
+  size = "md",
+  hideCloseButton = false,
+  variant = "fade",
+}) => {
+  // const contentRef = useClickOutside<HTMLDivElement>(onClose);
+  const contentRef = useClickOutside<HTMLDivElement>({
+    handler: onClose,
+    enabled: isOpen,
+  });
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = "unset";
-      };
-    }
-  }, [isOpen]);
+    if (!isOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
-
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div
-        className="fixed inset-0 bg-black/50"
-        onClick={onClose}
-        aria-hidden="true"
-      />
-      <div
-        role="dialog"
+    <ModalContext.Provider value={{ onClose }}>
+      <motion.div
+        variants={backdropVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
         aria-modal="true"
+        role="dialog"
         className={cn(
-          "relative z-10 w-full max-w-md rounded-lg bg-white p-6 shadow-xl",
-          className
+          "fixed inset-0 z-[2000] flex items-center justify-center overflow-y-auto bg-black/10 backdrop-blur-xs"
         )}
       >
-        {children}
-      </div>
+        <motion.div
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={modalVariants[variant]}
+          ref={contentRef}
+          className={cn(
+            "md:p-3 p-2 w-full overflow-y-auto relative ring-1 ring-black/10 rounded-md bg-white shadow-lg",
+            SizeVariables[size]
+          )}
+        >
+          {!hideCloseButton && (
+            <Button
+              className="absolute top-2 z-10 right-2 p-1 shadow-md ring-1 transition-all hover:ring-2 hover:scale-105 ring-black/10 hover:ring-black/10 !rounded-full"
+              onClick={onClose}
+            >
+              <X />
+            </Button>
+          )}
+          {children}
+        </motion.div>
+      </motion.div>
+    </ModalContext.Provider>,
+    document.body
+  );
+};
+const ModalHeader = ({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
+  return (
+    <div
+      role="dialog-header"
+      className={cn("flex relative justify-between p-2 border-b", className)}
+    >
+      {children}
     </div>
   );
-}
-
-export function ModalHeader({
+};
+const ModalFooter = ({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
-}) {
-  return <div className={cn("mb-4", className)}>{children}</div>;
-}
-
-export function ModalTitle({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return <h2 className={cn("text-lg font-semibold", className)}>{children}</h2>;
-}
-
-export function ModalBody({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return <div className={cn("mb-4", className)}>{children}</div>;
-}
-
-export function ModalFooter({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
+}) => {
   return (
-    <div className={cn("flex justify-end gap-2", className)}>{children}</div>
+    <div role="dialog-footer" className={cn("md:p-3 p-2 border-t", className)}>
+      {children}
+    </div>
   );
-}
+};
+
+const ModalBody = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
+  return (
+    <div role="dialog-body" className={cn("md:p-3 p-2 my-5", className)}>
+      {children}
+    </div>
+  );
+};
+
+export {
+  Modal,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  useModalContext,
+  ModalVariant,
+};
+
+// (Modal, ModalHeader, ModalBody, ModalFooter, ModalTitle);
