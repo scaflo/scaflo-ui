@@ -27,7 +27,7 @@ interface Modal {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
-  size: keyof typeof SizeVariables;
+  size?: keyof typeof SizeVariables;
   hideCloseButton?: boolean;
   variant?: ModalVariant;
 }
