@@ -6,10 +6,9 @@ export default defineConfig({
   format: ["esm"], // only ES modules
   dts: true, // emit .d.ts files
   splitting: true, // no code‑splitting for libs
-  sourcemap: true,
+  sourcemap: process.env.NODE_ENV === "development",
   clean: true,
-  treeshake: true,
+  treeshake: "recommended",
   external: ["react", "react-dom"],
   bundle: true,
-  
 });
