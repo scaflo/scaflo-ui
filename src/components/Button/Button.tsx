@@ -23,7 +23,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth,
       ...props
     },
-    ref
+    ref,
   ) => {
     const baseStyles =
       "flex bg-black/30 ring-2 ring-inset ring-black/10 hover:opacity-95 duration-200 ease-in hover:scale-105 transition cursor-pointer items-center justify-center rounded-md font-medium disabled:cursor-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-4 py-2 text-sm";
@@ -34,11 +34,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         role="button"
-        className={cn(
-          baseStyles,
-          className,
-          fullWidth && "!w-full"
-        )}
+        className={cn(baseStyles, className, fullWidth && "!w-full")}
         disabled={isDisabled || loading}
         aria-busy={loading}
         {...props}
@@ -59,5 +55,5 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       </button>
     );
-  }
+  },
 );

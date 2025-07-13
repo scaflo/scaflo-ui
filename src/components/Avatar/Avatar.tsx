@@ -55,7 +55,7 @@ const Avatar = ({
       className={cn(
         AvatarSize[size],
         "rounded-full overflow-hidden z-0 group flex items-center justify-center relative",
-        className
+        className,
       )}
       onClick={onClick}
       role={onClick ? "button" : "img"}

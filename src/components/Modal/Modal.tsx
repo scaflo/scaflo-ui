@@ -66,7 +66,7 @@ const Modal: React.FC<Modal> = ({
         aria-modal="true"
         role="dialog"
         className={cn(
-          "fixed inset-0 z-[2000] flex items-center justify-center overflow-y-auto bg-black/10 backdrop-blur-xs"
+          "fixed inset-0 z-[2000] flex items-center justify-center overflow-y-auto bg-black/10 backdrop-blur-xs",
         )}
       >
         <motion.div
@@ -77,7 +77,7 @@ const Modal: React.FC<Modal> = ({
           ref={contentRef}
           className={cn(
             "md:p-3 p-2 w-full overflow-y-auto relative ring-1 ring-black/10 rounded-md bg-white shadow-lg",
-            SizeVariables[size]
+            SizeVariables[size],
           )}
         >
           {!hideCloseButton && (
@@ -92,7 +92,7 @@ const Modal: React.FC<Modal> = ({
         </motion.div>
       </motion.div>
     </ModalContext.Provider>,
-    document.body
+    document.body,
   );
 };
 const ModalHeader = ({

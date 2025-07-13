@@ -14,7 +14,6 @@ export const SizeVariables: SizeVariables = {
   "3xl": "max-w-3xl",
 };
 
-
 interface AvatarSize {
   "2xl": string;
   md: string;

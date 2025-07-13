@@ -62,7 +62,11 @@ function Tabs({
 
   return (
     <TabsContext.Provider value={{ activeTab, setActiveTab }}>
-      <div className={cn("w-full border p-1 rounded border-black/20", className)}>{children}</div>
+      <div
+        className={cn("w-full border p-1 rounded border-black/20", className)}
+      >
+        {children}
+      </div>
     </TabsContext.Provider>
   );
 }
@@ -75,7 +79,7 @@ function TabsList({ children, className, equalWidth = false }: TabsListProps) {
         className={cn(
           "h-10 items-center justify-center rounded-md bg-gray-100 p-1",
           equalWidth ? "flex w-full" : "inline-flex", // Conditional flex/inline-flex and w-full
-          className
+          className,
         )}
       >
         {children}
@@ -123,7 +127,7 @@ function TabsTrigger({
           ? "bg-white text-gray-900 shadow-sm"
           : "text-gray-600 hover:text-gray-900",
         equalWidth && "flex-1", // Apply flex-1 if equalWidth is true
-        className
+        className,
       )}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -144,7 +148,7 @@ function TabsContent({ children, value, className }: TabsContentProps) {
       id={`tabpanel-${value}`}
       className={cn(
         "my-2 p-1 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2",
-        className
+        className,
       )}
       tabIndex={0}
     >

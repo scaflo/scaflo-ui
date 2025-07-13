@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react";
 
 // want to use this like this
-  // const contentRef = useClickOutside<HTMLDivElement>({
-  //   handler: onClose,
-  //   enabled: isOpen,
-  // });
+// const contentRef = useClickOutside<HTMLDivElement>({
+//   handler: onClose,
+//   enabled: isOpen,
+// });
 
-  interface UseClickOutsideOptions {
-    handler: () => void;
-    enabled?: boolean;
-  }
+interface UseClickOutsideOptions {
+  handler: () => void;
+  enabled?: boolean;
+}
 
 export function useClickOutside<T extends HTMLElement>({
   handler,

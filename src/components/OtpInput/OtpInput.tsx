@@ -69,7 +69,7 @@ const OTPInput = ({
 
   const handleKeyDown = (
     index: number,
-    e: React.KeyboardEvent<HTMLInputElement>
+    e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
     if (disabled) return;
     switch (e.key) {
@@ -161,7 +161,7 @@ const OTPInput = ({
             focusClassName,
             "disabled:cursor-not-allowed disabled:opacity-50",
             getBorderColorClass(index),
-            inputClassName
+            inputClassName,
           )}
         />
       ))}

@@ -65,7 +65,7 @@ export function Pagination({
           "hover:bg-gray-50 focus:outline-none ",
           ButtonClassName,
           !hasPreviousPage &&
-            cn(defaultDisabledClasses, disabledButtonClassName)
+            cn(defaultDisabledClasses, disabledButtonClassName),
         )}
         aria-label="Go to previous page"
       >
@@ -91,7 +91,7 @@ export function Pagination({
               defaultButtonClasses,
               "hover:bg-gray-50 focus:outline-none ",
               ButtonClassName,
-              isActive && cn(defaultActiveClasses, activeButtonClassName)
+              isActive && cn(defaultActiveClasses, activeButtonClassName),
             )}
             aria-label={`Go to page ${pageNumber}`}
             aria-current={isActive ? "page" : undefined}
@@ -107,7 +107,7 @@ export function Pagination({
           defaultButtonClasses,
           "hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-900",
           ButtonClassName,
-          !hasNextPage && cn(defaultDisabledClasses, disabledButtonClassName)
+          !hasNextPage && cn(defaultDisabledClasses, disabledButtonClassName),
         )}
         aria-label="Go to next page"
       >
