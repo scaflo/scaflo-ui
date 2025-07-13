@@ -23,9 +23,17 @@ import {
   useModalContext,
 } from "./components/Modal/Modal.js";
 
-import { OTPInput, type OTPInputProps } from "./components/OtpInput/OtpInput.js";
+import {
+  OTPInput,
+  type OTPInputProps,
+} from "./components/OtpInput/OtpInput.js";
 
 import { Scrollable } from "./components/Scrollable/Scrollable.js";
+
+import {
+  Pagination,
+  PaginationProps,
+} from "./components/Pagination/Pagination.js";
 
 // import {
 //   Sheet,
@@ -68,4 +76,6 @@ export {
   // type SheetVariant,
   useToast,
   ToastProvider,
+  Pagination,
+  PaginationProps,
 };
