@@ -58,22 +58,23 @@ import { BookOpen } from "lucide-react";
       How do I reset my password?
     </AccordionHeader>
     <AccordionContent index={0}>
-      To reset your password, click “Forgot password” on the login page and follow the emailed link.
+      To reset your password, click “Forgot password” on the login page and
+      follow the emailed link.
     </AccordionContent>
   </AccordionItem>
   {/* Additional items... */}
-</Accordion>
+</Accordion>;
 ```
 
 **Props:**
 
-* `defaultIndex?: number` — Which panel is open by default.
-* `onChange?: (index: number) => void` — Fired when the active panel changes.
-* `AccordionHeader` accepts:
-  * `icon?: React.ReactNode`
-  * `index: number`
-* `AccordionContent` accepts:
-  * `index: number`
+- `defaultIndex?: number` — Which panel is open by default.
+- `onChange?: (index: number) => void` — Fired when the active panel changes.
+- `AccordionHeader` accepts:
+  - `icon?: React.ReactNode`
+  - `index: number`
+- `AccordionContent` accepts:
+  - `index: number`
 
 ---
 
@@ -88,14 +89,14 @@ import { Avatar } from "@scaflo/ui";
   src="https://example.com/user.jpg"
   size="2xl"
   onClick={() => console.log("Avatar clicked")}
-/>
+/>;
 ```
 
 **Props:**
 
-* `src?: string` — Image URL.
-* `size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"`
-* `onClick?: () => void`
+- `src?: string` — Image URL.
+- `size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl"`
+- `onClick?: () => void`
 
 ---
 
@@ -106,15 +107,17 @@ A fully styled button with variants and sizes.
 ```tsx
 import { Button } from "@scaflo/ui";
 
-<Button variant="solid" size="md" onClick={() => console.log("Clicked!")}>Click Me</Button>
+<Button variant="solid" size="md" onClick={() => console.log("Clicked!")}>
+  Click Me
+</Button>;
 ```
 
 **Props:**
 
-* `variant?: "solid" | "outline" | "ghost"`
-* `size?: "sm" | "md" | "lg"`
-* `disabled?: boolean`
-* Standard `<button>` props apply.
+- `variant?: "solid" | "outline" | "ghost"`
+- `size?: "sm" | "md" | "lg"`
+- `disabled?: boolean`
+- Standard `<button>` props apply.
 
 ---
 
@@ -123,12 +126,7 @@ import { Button } from "@scaflo/ui";
 An accessible modal/dialog component with motion variants.
 
 ```tsx
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from "@scaflo/ui";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "@scaflo/ui";
 import { useState } from "react";
 
 function ExampleModal() {
@@ -161,10 +159,10 @@ function ExampleModal() {
 
 **Props:**
 
-* `isOpen: boolean`
-* `onClose: () => void`
-* `variant?: "left" | "right" | "top" | "bottom" | "pop" | "fade" | "rotate" | "bounce"`
-* `size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl"`
+- `isOpen: boolean`
+- `onClose: () => void`
+- `variant?: "left" | "right" | "top" | "bottom" | "pop" | "fade" | "rotate" | "bounce"`
+- `size?: "sm" | "md" | "lg" | "xl" | "2xl" | "3xl"`
 
 ---
 
@@ -185,22 +183,22 @@ import { OTPInput } from "@scaflo/ui";
   focusClassName="focus:ring-blue-500"
   onChange={(val) => console.log("Current OTP:", val)}
   onComplete={(val) => console.log("Completed OTP:", val)}
-/>
+/>;
 ```
 
 **Props:**
 
-* `length?: number` — Number of digits (default `6`).
-* `autoFocus?: boolean`
-* `disabled?: boolean`
-* Styling overrides:
-  * `normalClassName?: string`
-  * `filledClassName?: string`
-  * `successClassName?: string`
-  * `errorClassName?: string`
-  * `focusClassName?: string`
-* `onChange?: (value: string) => void`
-* `onComplete?: (value: string) => void`
+- `length?: number` — Number of digits (default `6`).
+- `autoFocus?: boolean`
+- `disabled?: boolean`
+- Styling overrides:
+  - `normalClassName?: string`
+  - `filledClassName?: string`
+  - `successClassName?: string`
+  - `errorClassName?: string`
+  - `focusClassName?: string`
+- `onChange?: (value: string) => void`
+- `onComplete?: (value: string) => void`
 
 ---
 
@@ -237,17 +235,17 @@ function DemoToasts() {
 
 **API:**
 
-* Wrap your app in `<ToastProvider>`.
-* `useToast()` returns `{ addToast: (options) => void }`.
-* `addToast` options:
-  * `type: "info" | "success" | "error" | "warning"`
-  * `title: string`
-  * `description?: string`
-  * `duration?: number` (ms)
-  * `position?: "top-left" | "top-right" | "bottom-left" | "bottom-right"`
+- Wrap your app in `<ToastProvider>`.
+- `useToast()` returns `{ addToast: (options) => void }`.
+- `addToast` options:
+  - `type: "info" | "success" | "error" | "warning"`
+  - `title: string`
+  - `description?: string`
+  - `duration?: number` (ms)
+  - `position?: "top-left" | "top-right" | "bottom-left" | "bottom-right"`
 
 ---
 
 ## License
 
-MIT © [Your Company]
+MIT © Scafle
