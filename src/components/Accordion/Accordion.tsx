@@ -131,7 +131,7 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
         className
       )}
     >
-      <div className="flex items-start space-x-4 flex-1 justify-center">
+      <div className="flex items-center space-x-4 flex-1 justify-center">
         <div className="flex justify-center items-center">
           {Icon ? (
             typeof Icon === "function" ? (
@@ -186,17 +186,8 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
 interface AccordionContentProps {
   index: number;
   children: ReactNode;
-  /**
-   * Optional className for the outer content container (handles max-h and opacity).
-   */
   className?: string;
-  /**
-   * Optional className for the inner content div (handles padding).
-   */
   contentClassName?: string;
-  /**
-   * Optional className for the paragraph element inside the content.
-   */
   paragraphClassName?: string;
 }
 
