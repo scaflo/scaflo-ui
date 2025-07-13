@@ -54,7 +54,7 @@ const Avatar = ({
     <div
       className={cn(
         AvatarSize[size],
-        "rounded-full overflow-hidden group flex items-center justify-center relative",
+        "rounded-full overflow-hidden z-0 group flex items-center justify-center relative",
         className
       )}
       onClick={onClick}
@@ -71,7 +71,7 @@ const Avatar = ({
       }
     >
       <div
-        className={`w-full h-full rounded-full absolute z-10 top-0 overflow-hidden left-0 bg-black/0 transition-colors ${
+        className={`w-full h-full rounded-full absolute z-[1] top-0 overflow-hidden left-0 bg-black/0 transition-colors ${
           onClick ? "cursor-pointer group-hover:bg-black/20" : ""
         }`}
       ></div>
