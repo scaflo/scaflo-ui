@@ -34,6 +34,12 @@ import {
   Pagination,
   PaginationProps,
 } from "./components/Pagination/Pagination.js";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "./components/Tabs/Tabs.js";
 
 // import {
 //   Sheet,
@@ -78,4 +84,8 @@ export {
   ToastProvider,
   Pagination,
   PaginationProps,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
 };
