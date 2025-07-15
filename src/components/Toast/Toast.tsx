@@ -70,7 +70,7 @@ function ToastContainer({ toasts }: { toasts: ToastProps[] }) {
       acc[position].push(toast);
       return acc;
     },
-    {} as Record<string, ToastProps[]>
+    {} as Record<string, ToastProps[]>,
   );
 
   return createPortal(
@@ -91,7 +91,7 @@ function ToastContainer({ toasts }: { toasts: ToastProps[] }) {
         </div>
       ))}
     </>,
-    document.body
+    document.body,
   );
 }
 
@@ -130,7 +130,7 @@ function Toast({
     <div
       className={cn(
         "relative flex w-80 items-start gap-3 rounded-md border p-4 shadow-lg",
-        colors[type]
+        colors[type],
       )}
     >
       <Icon className="h-5 w-5 flex-shrink-0 mt-0.5" />

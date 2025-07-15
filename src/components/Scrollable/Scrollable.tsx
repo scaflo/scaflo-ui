@@ -27,7 +27,7 @@ export function Scrollable({
       className={cn(
         "scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100",
         scrollClasses[direction],
-        className
+        className,
       )}
       style={{
         maxHeight,

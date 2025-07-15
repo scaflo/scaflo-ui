@@ -246,6 +246,39 @@ function DemoToasts() {
 
 ---
 
+### HoverCard
+
+A simple wrapper that adds a smooth 3D tilt and scale effect on hover.
+
+```tsx
+import { HoverCard } from "@scaflo/ui";
+
+function DemoHoverCard() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <HoverCard className="w-64 h-64 p-6 bg-gradient-to-br from-pink-50 to-purple-50">
+        <div className="text-center h-full flex flex-col justify-center">
+          <Avatar className="w-20 h-20 bg-gradient-to-br from-pink-400 to-purple-600 rounded-full mx-auto mb-4" />
+          <h4 className="text-lg font-semibold text-gray-800 mb-2">
+            Profile Card
+          </h4>
+          <p className="text-sm text-gray-600">Hover to see the magic!</p>
+        </div>
+      </HoverCard>
+    </div>
+  );
+}
+```
+
+**API:**
+
+- Wrap any content in `<HoverCard>` to enable tilt.
+- Props:
+  - `children: React.ReactNode` — the inner content.
+  - `className?: string` — optional Tailwind (or other) classes for sizing, spacing, colors, etc.
+
+---
+
 ## License
 
 MIT © Scafle

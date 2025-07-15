@@ -23,9 +23,23 @@ import {
   useModalContext,
 } from "./components/Modal/Modal.js";
 
-import { OTPInput, type OTPInputProps } from "./components/OtpInput/OtpInput.js";
+import {
+  OTPInput,
+  type OTPInputProps,
+} from "./components/OtpInput/OtpInput.js";
 
 import { Scrollable } from "./components/Scrollable/Scrollable.js";
+
+import {
+  Pagination,
+  PaginationProps,
+} from "./components/Pagination/Pagination.js";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "./components/Tabs/Tabs.js";
 
 // import {
 //   Sheet,
@@ -39,6 +53,8 @@ import { Scrollable } from "./components/Scrollable/Scrollable.js";
 // } from "./components/Sheet/Sheet.js";
 
 import { useToast, ToastProvider } from "./components/Toast/Toast.js";
+
+import { HoverCard } from "./components/HoverCard/HoverCard.js";
 
 export {
   Button,
@@ -68,4 +84,11 @@ export {
   // type SheetVariant,
   useToast,
   ToastProvider,
+  Pagination,
+  PaginationProps,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  HoverCard,
 };

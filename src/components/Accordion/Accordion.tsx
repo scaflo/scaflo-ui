@@ -10,7 +10,6 @@ import {
 import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 import { cn } from "../../lib/utils.js";
 
-
 interface AccordionContextType {
   openIndices: Set<number>;
   toggleIndex: (i: number) => void;
@@ -41,7 +40,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   className,
 }) => {
   const [openIndices, setOpenIndices] = useState<Set<number>>(
-    () => new Set([defaultIndex])
+    () => new Set([defaultIndex]),
   );
 
   const toggleIndex = useCallback(
@@ -60,7 +59,7 @@ export const Accordion: React.FC<AccordionProps> = ({
         return next;
       });
     },
-    [onChange, allowMultiple]
+    [onChange, allowMultiple],
   );
 
   return (
@@ -87,7 +86,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
     className={cn(
       "rounded-lg overflow-hidden transition-all duration-300",
       "bg-card text-card-foreground shadow-sm hover:shadow-md", // Uses theme-aware shadcn/ui colors
-      className
+      className,
     )}
   >
     {children}
@@ -128,7 +127,7 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
       className={cn(
         "w-full flex items-center justify-between px-6 py-5 text-left transition-all duration-200 cursor-pointer",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-        className
+        className,
       )}
     >
       <div className="flex items-center space-x-4 flex-1 justify-center">
@@ -147,7 +146,7 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
           <h3
             className={cn(
               "text-lg font-semibold text-foreground pr-4",
-              titleClassName
+              titleClassName,
             )}
           >
             {children}
@@ -156,7 +155,7 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
             <span
               className={cn(
                 "inline-block mt-2 px-3 py-1 text-xs font-medium rounded-full",
-                categoryClassName
+                categoryClassName,
               )}
             >
               {category}
@@ -168,14 +167,14 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
         <ChevronUp
           className={cn(
             "w-5 h-5 transition-transform duration-200",
-            chevronClassName
+            chevronClassName,
           )}
         />
       ) : (
         <ChevronDown
           className={cn(
             "w-5 h-5 transition-transform duration-200",
-            chevronClassName
+            chevronClassName,
           )}
         />
       )}
@@ -208,14 +207,14 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
         "overflow-hidden transition-all duration-300 ease-in-out",
         "border-t border-black/20",
         isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
-        className
+        className,
       )}
     >
       <div className={cn("mt-2 pb-5 px-4", contentClassName)}>
         <p
           className={cn(
             "leading-relaxed text-muted-foreground",
-            paragraphClassName
+            paragraphClassName,
           )}
         >
           {children}

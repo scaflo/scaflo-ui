@@ -5,7 +5,6 @@
 // import type { AvatarSize } from "../../variables/variables.js";
 // import { cn } from "../../lib/utils.js";
 
-
 // interface AvatarGroupProps {
 //   avatars: string[]; // Array of image sources
 //   fallback?: string; // Single fallback for all avatars
@@ -134,8 +133,6 @@
 
 // export { AvatarGroup };
 
-
-
 "use client";
 import { Avatar } from "../Avatar/Avatar.js";
 import type { AvatarSize } from "../../variables/variables.js";
@@ -154,7 +151,7 @@ interface AvatarGroupProps {
 
 const AvatarGroup = ({
   avatars,
-  fallback = "A", 
+  fallback = "A",
   size = "md",
   max = 5,
   spacing = "tight",
