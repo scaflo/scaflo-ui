@@ -54,6 +54,8 @@ import {
 
 import { useToast, ToastProvider } from "./components/Toast/Toast.js";
 
+import { HoverCard } from "./components/HoverCard/HoverCard.js";
+
 export {
   Button,
   Modal,
@@ -88,4 +90,5 @@ export {
   TabsList,
   TabsTrigger,
   TabsContent,
+  HoverCard,
 };
